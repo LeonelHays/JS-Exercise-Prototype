@@ -39,14 +39,41 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-  
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+}
+Person.prototype.eat=function(ed){
+  if(this.stomach.length < 10){
+    this.stomach.push(ed);
+  }
 }
 
+Person.prototype.poop = function(){
+  this.stomach = []
+}
 
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`;
+}
 
+const kevin = new Person('Kevin', 26);
+const leo = new Person('Leo', 18);
 
+kevin.eat('pizza');
+kevin.eat('taco');
+kevin.eat('cake');
+kevin.eat('pasta');
+kevin.eat('sandvich');
 
+console.log(kevin.stomach);
+
+kevin.poop();
+
+console.log(kevin.stomach);
+
+console.log(kevin.toString);
 
 
 /*
@@ -63,11 +90,22 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
+Car.prototype.fill = function(gallons){
+   return this.tank += gallons;
 }
 
+const blyatMobile = new Car('Blyatmobile', 20);
 
+console.log(blyatMobile.model);
+console.log(blyatMobile.fill(20));
+console.log(blyatMobile.tank);
+console.log(blyatMobile.odometer);
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -75,18 +113,29 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Baby(name, age, favoriteToy) {
+ Person.call(this, name, age);
+ this.favoriteToy = favoriteToy;
 }
-
-
+ Baby.prototype = Object.create(Person.prototype);
+ Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`;
+}
+const Child = new Baby('Da-bebe', 5, "trains")
+Child.eat('baby food');
+console.log(Child.name);
+console.log(Child.age);
+console.log(Child.stomach);
+console.log(Child.favoriteToy);
+console.log(Child.play());
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
+  1. window is when 'this' has no context and just throws everything at you
   2. 
   3. 
-  4. 
+  4.
+  extra. the 'this' keyword does not have context in arrow functions.
 */
 
 
