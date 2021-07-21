@@ -132,9 +132,9 @@ console.log(Child.play());
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
   1. window is when 'this' has no context and just throws everything at you
-  2. 
-  3. 
-  4.
+  2. implicit is when 'this' gets context through the Object it is in
+  3. explicit is when you tell 'this' to mean something through .call, .apply or .bind
+  4. newBinding is when 'this' gets it's context from a newly created Object
   extra. the 'this' keyword does not have context in arrow functions.
 */
 
